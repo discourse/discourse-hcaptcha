@@ -1,20 +1,27 @@
 # frozen_string_literal: true
 
-# name: discourse-plugin-name
-# about: TODO
+# name: discourse-hCaptcha
+# about: hCaptcha support for Discourse
 # version: 0.0.1
 # authors: Discourse
-# url: TODO
+# url: https://github.com/discourse/discourse-hCaptcha
 # required_version: 2.7.0
 
-enabled_site_setting :plugin_name_enabled
+enabled_site_setting :discourse_hCaptcha_enabled
 
-module ::MyPluginModule
-  PLUGIN_NAME = "discourse-plugin-name"
+module ::DiscourseHCaptcha
+  PLUGIN_NAME = "discourse-hCaptcha"
 end
 
-require_relative "lib/my_plugin_module/engine"
+require_relative "lib/discourse_hCaptcha/engine"
 
 after_initialize do
-  # Code which should run after Rails has finished booting
+  require_dependency File.expand_path('../app/controllers/discourse_hCaptcha/h_captcha_controller.rb', __FILE__)
+  require_dependency File.expand_path('../lib/discourse_hCaptcha/create_users_controller_patch.rb', __FILE__)
+
+  reloadable_patch do
+    UsersController.class_eval {
+      include DiscourseHCaptcha::CreateUsersControllerPatch
+    }
+  end
 end

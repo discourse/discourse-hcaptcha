@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module ::MyPluginModule
+module ::DiscourseHCaptcha
   class Engine < ::Rails::Engine
     engine_name PLUGIN_NAME
-    isolate_namespace MyPluginModule
+    isolate_namespace DiscourseHCaptcha
     config.autoload_paths << File.join(config.root, "lib")
   end
 end
