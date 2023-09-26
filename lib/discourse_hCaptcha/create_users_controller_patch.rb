@@ -23,6 +23,17 @@ module DiscourseHCaptcha
 
     private
 
+    def send_h_captcha_verification(h_captcha_token)
+      uri = URI.parse(H_CAPTCHA_VERIFICATION_URL)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request.set_form_data({ "secret" => SiteSetting.hCaptcha_secret_key, "response" => h_captcha_token })
+
+      http.request(request)
+    end
+
     def fetch_h_captcha_token
       temp_id = cookies.encrypted[:h_captcha_temp_id]
       h_captcha_token = Discourse.redis.get("hCaptchaToken_#{temp_id}")
@@ -33,17 +44,6 @@ module DiscourseHCaptcha
       end
 
       h_captcha_token
-    end
-
-    def send_h_captcha_verification(h_captcha_token)
-      uri = URI.parse(H_CAPTCHA_VERIFICATION_URL)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.set_form_data({ "secret" => SiteSetting.hCaptcha_secret_key, "response" => h_captcha_token })
-
-      http.request(request)
     end
 
     def validate_h_captcha_response(response)

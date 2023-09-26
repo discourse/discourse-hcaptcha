@@ -2,42 +2,65 @@
 
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
-  describe '#create' do
+RSpec.describe "Users", type: :request do
+  describe "POST /u" do
+    let(:user_params) do
+      honeypot_magic({
+                       name: "unicorn",
+                       email: "awesomeunicorn@example.com",
+                       username: "awesomeunicorn",
+                       password: "P4ssw0rd$$"
+                     })
+    end
+
     before do
-      controller.stubs(:cookies).returns(encrypted: { h_captcha_temp_id: 'temp123' })
-      SiteSetting.stubs(:allow_new_registrations).returns(true)
+      SiteSetting.discourse_hCaptcha_enabled = true
+      SiteSetting.same_site_cookies = "Lax"
+      SiteSetting.hCaptcha_secret_key = "secret-key"
+
+      stub_request(:post, "https://hcaptcha.com/siteverify")
+        .with(body: { secret: SiteSetting.hCaptcha_secret_key, response: "token-from-hCaptcha" })
+        .to_return(status: 200, body: '{"success":true}', headers: {})
     end
 
-    let(:user_params) { { email: 'test@example.com', username: 'testuser', password: 'password' } }
+    context 'when h_captcha verification fails' do
+      before do
+        stub_request(:post, "https://hcaptcha.com/siteverify")
+          .with(body: { secret: SiteSetting.hCaptcha_secret_key, response: "token-from-hCaptcha" })
+          .to_return(status: 200, body: '{"success":false}', headers: {})
+      end
 
-    it 'fails when h_captcha_token is blank' do
-      Discourse.redis.stubs(:get).returns(nil)
-
-      post :create, params: user_params
-      puts "Response Body: #{response.body}"
-      puts "Response Status: #{response.status}"
-      expect(JSON.parse(response.body)['message']).to eq('h_captcha_verification_failed')
+      it 'fails registration' do
+        post "/hcaptcha/create.json", params: { token: "token-from-hCaptcha" }
+        post "/u.json", params: user_params
+        expect(JSON.parse(response.body)['success']).to be(false)
+      end
     end
 
-    it 'fails when h_captcha verification fails' do
-      Discourse.redis.stubs(:get).returns('token123')
-      Net::HTTP.any_instance.stubs(:request).returns(OpenStruct.new(code: '200', body: '{"success":false}'))
-
-      post :create, params: user_params
-      puts "Response Body: #{response.body}"
-      puts "Response Status: #{response.status}"
-      expect(JSON.parse(response.body)['message']).to eq('h_captcha_verification_failed')
+    context 'when h_captcha token is missing' do
+      it 'fails registration' do
+        post "/u.json", params: user_params
+        expect(JSON.parse(response.body)['success']).to be(false)
+      end
     end
 
-    it 'succeeds when h_captcha verification is successful' do
-      Discourse.redis.stubs(:get).returns('token123')
-      Net::HTTP.any_instance.stubs(:request).returns(OpenStruct.new(code: '200', body: '{"success":true}'))
-
-      post :create, params: user_params
-      puts "Response Body: #{response.body}"
-      puts "Response Status: #{response.status}"
-      expect(JSON.parse(response.body)['success']).to be(true)
+    context 'when h_captcha verification is successful' do
+      it 'succeeds in registration' do
+        post "/hcaptcha/create.json", params: { token: "token-from-hCaptcha" }
+        post "/u.json", params: user_params
+        expect(JSON.parse(response.body)['success']).to be(true)
+      end
     end
+
+    private
+
+    def honeypot_magic(params)
+      get "/session/hp.json"
+      json = response.parsed_body
+      params[:password_confirmation] = json["value"]
+      params[:challenge] = json["challenge"].reverse
+      params
+    end
+
   end
 end
