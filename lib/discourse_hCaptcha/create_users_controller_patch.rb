@@ -5,9 +5,7 @@ module DiscourseHCaptcha
     H_CAPTCHA_VERIFICATION_URL = "https://hcaptcha.com/siteverify".freeze
 
     extend ActiveSupport::Concern
-    included do
-      before_action :check_h_captcha, only: [:create]
-    end
+    included { before_action :check_h_captcha, only: [:create] }
 
     def check_h_captcha
       h_captcha_token = fetch_h_captcha_token
@@ -29,7 +27,9 @@ module DiscourseHCaptcha
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(uri.request_uri)
-      request.set_form_data({ "secret" => SiteSetting.hCaptcha_secret_key, "response" => h_captcha_token })
+      request.set_form_data(
+        { "secret" => SiteSetting.hCaptcha_secret_key, "response" => h_captcha_token },
+      )
 
       http.request(request)
     end
@@ -50,8 +50,9 @@ module DiscourseHCaptcha
       raise Discourse::InvalidAccess.new if response.code.to_i >= 500
 
       response_json = JSON.parse(response.body)
-      raise Discourse::InvalidAccess.new if response_json["success"].nil? || response_json["success"] == false
+      if response_json["success"].nil? || response_json["success"] == false
+        raise Discourse::InvalidAccess.new
+      end
     end
-
   end
 end

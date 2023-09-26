@@ -35,7 +35,7 @@ module ::DiscourseHCaptcha
         httponly: true,
         secure: SiteSetting.force_https,
         expires: TOKEN_TTL.from_now,
-        same_site: same_site
+        same_site: same_site,
       }.compact
     end
   end

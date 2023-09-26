@@ -16,12 +16,16 @@ end
 require_relative "lib/discourse_hCaptcha/engine"
 
 after_initialize do
-  require_dependency File.expand_path('../app/controllers/discourse_hCaptcha/h_captcha_controller.rb', __FILE__)
-  require_dependency File.expand_path('../lib/discourse_hCaptcha/create_users_controller_patch.rb', __FILE__)
+  require_dependency File.expand_path(
+                       "../app/controllers/discourse_hCaptcha/h_captcha_controller.rb",
+                       __FILE__,
+                     )
+  require_dependency File.expand_path(
+                       "../lib/discourse_hCaptcha/create_users_controller_patch.rb",
+                       __FILE__,
+                     )
 
   reloadable_patch do
-    UsersController.class_eval {
-      include DiscourseHCaptcha::CreateUsersControllerPatch
-    }
+    UsersController.class_eval { include DiscourseHCaptcha::CreateUsersControllerPatch }
   end
 end

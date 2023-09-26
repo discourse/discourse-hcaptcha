@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Users", type: :request do
   describe "POST /u" do
     let(:user_params) do
-      honeypot_magic({
-                       name: "unicorn",
-                       email: "awesomeunicorn@example.com",
-                       username: "awesomeunicorn",
-                       password: "P4ssw0rd$$"
-                     })
+      honeypot_magic(
+        {
+          name: "unicorn",
+          email: "awesomeunicorn@example.com",
+          username: "awesomeunicorn",
+          password: "P4ssw0rd$$",
+        },
+      )
     end
 
     before do
@@ -18,37 +20,43 @@ RSpec.describe "Users", type: :request do
       SiteSetting.same_site_cookies = "Lax"
       SiteSetting.hCaptcha_secret_key = "secret-key"
 
-      stub_request(:post, "https://hcaptcha.com/siteverify")
-        .with(body: { secret: SiteSetting.hCaptcha_secret_key, response: "token-from-hCaptcha" })
-        .to_return(status: 200, body: '{"success":true}', headers: {})
+      stub_request(:post, "https://hcaptcha.com/siteverify").with(
+        body: {
+          secret: SiteSetting.hCaptcha_secret_key,
+          response: "token-from-hCaptcha",
+        },
+      ).to_return(status: 200, body: '{"success":true}', headers: {})
     end
 
-    context 'when h_captcha verification fails' do
+    context "when h_captcha verification fails" do
       before do
-        stub_request(:post, "https://hcaptcha.com/siteverify")
-          .with(body: { secret: SiteSetting.hCaptcha_secret_key, response: "token-from-hCaptcha" })
-          .to_return(status: 200, body: '{"success":false}', headers: {})
+        stub_request(:post, "https://hcaptcha.com/siteverify").with(
+          body: {
+            secret: SiteSetting.hCaptcha_secret_key,
+            response: "token-from-hCaptcha",
+          },
+        ).to_return(status: 200, body: '{"success":false}', headers: {})
       end
 
-      it 'fails registration' do
+      it "fails registration" do
         post "/hcaptcha/create.json", params: { token: "token-from-hCaptcha" }
         post "/u.json", params: user_params
-        expect(JSON.parse(response.body)['success']).to be(false)
+        expect(JSON.parse(response.body)["success"]).to be(false)
       end
     end
 
-    context 'when h_captcha token is missing' do
-      it 'fails registration' do
+    context "when h_captcha token is missing" do
+      it "fails registration" do
         post "/u.json", params: user_params
-        expect(JSON.parse(response.body)['success']).to be(false)
+        expect(JSON.parse(response.body)["success"]).to be(false)
       end
     end
 
-    context 'when h_captcha verification is successful' do
-      it 'succeeds in registration' do
+    context "when h_captcha verification is successful" do
+      it "succeeds in registration" do
         post "/hcaptcha/create.json", params: { token: "token-from-hCaptcha" }
         post "/u.json", params: user_params
-        expect(JSON.parse(response.body)['success']).to be(true)
+        expect(JSON.parse(response.body)["success"]).to be(true)
       end
     end
 
@@ -61,6 +69,5 @@ RSpec.describe "Users", type: :request do
       params[:challenge] = json["challenge"].reverse
       params
     end
-
   end
 end
