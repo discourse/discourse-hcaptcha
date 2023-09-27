@@ -13,15 +13,15 @@ module ::DiscourseHCaptcha
   PLUGIN_NAME = "discourse-hCaptcha"
 end
 
-require_relative "lib/discourse_hCaptcha/engine"
+require_relative "lib/discourse_h_captcha/engine"
 
 after_initialize do
   require_dependency File.expand_path(
-                       "../app/controllers/discourse_hCaptcha/h_captcha_controller.rb",
+                       "../app/controllers/discourse_h_captcha/h_captcha_controller.rb",
                        __FILE__,
                      )
   require_dependency File.expand_path(
-                       "../lib/discourse_hCaptcha/create_users_controller_patch.rb",
+                       "../lib/discourse_h_captcha/create_users_controller_patch.rb",
                        __FILE__,
                      )
 
