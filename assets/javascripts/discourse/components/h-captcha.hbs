@@ -1,0 +1,5 @@
+<div id="h-captcha-field" class="h-captcha" data-sitekey={{@sitekey}}></div>
+
+{{#if this.hCaptchaService.submitFailed}}
+  <InputTip @validation={{this.hCaptchaService.inputValidation}} />
+{{/if}}

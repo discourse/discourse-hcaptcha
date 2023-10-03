@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-MyPluginModule::Engine.routes.draw do
-  get "/examples" => "examples#index"
-  # define routes here
-end
+DiscourseHCaptcha::Engine.routes.draw { post "/create" => "h_captcha#create" }
 
-Discourse::Application.routes.draw { mount ::MyPluginModule::Engine, at: "my-plugin" }
+Discourse::Application.routes.draw { mount ::DiscourseHCaptcha::Engine, at: "hcaptcha" }

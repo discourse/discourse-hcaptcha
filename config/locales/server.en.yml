@@ -1,1 +1,4 @@
 en:
+  site_settings:
+    discourse_hCaptcha_enabled: "Enable the hCaptcha Plugin"
+  h_captcha_verification_failed: "hCaptcha verification failed"

@@ -1,7 +1,7 @@
 {
-  "name": "discourse-plugin-name",
+  "name": "discourse-hCaptcha",
   "version": "0.0.1",
-  "repository": "TODO",
+  "repository": "https://github.com/discourse/discourse-hCaptcha.git",
   "author": "Discourse",
   "license": "MIT",
   "devDependencies": {

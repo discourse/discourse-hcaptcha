@@ -1,4 +1,5 @@
 en:
   js:
-    discourse_plugin_name:
+    discourse_hCaptcha:
+      missing_token: "Please complete the hCaptcha challenge."
       placeholder: placeholder
