@@ -27,7 +27,7 @@ module DiscourseHCaptcha
       http = FinalDestination::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
-      request = Net::HTTP::Post.new(uri.request_uri)
+      request = FinalDestination::HTTP::Post.new(uri.request_uri)
       request.set_form_data(
         { "secret" => SiteSetting.hCaptcha_secret_key, "response" => h_captcha_token },
       )
