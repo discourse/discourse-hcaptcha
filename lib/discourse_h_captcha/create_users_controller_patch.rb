@@ -23,7 +23,8 @@ module DiscourseHCaptcha
 
     def send_h_captcha_verification(h_captcha_token)
       uri = URI.parse(H_CAPTCHA_VERIFICATION_URL)
-      http = Net::HTTP.new(uri.host, uri.port)
+
+      http = FinalDestination::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(uri.request_uri)

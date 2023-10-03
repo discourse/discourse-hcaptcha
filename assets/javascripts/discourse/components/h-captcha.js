@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
+import loadScript from "discourse/lib/load-script";
 
 const HCAPTCHA_SCRIPT_URL = "https://hcaptcha.com/1/api.js?render=explicit";
 
@@ -34,16 +35,10 @@ export default class HCaptcha extends Component {
     return typeof this.hCaptcha !== "undefined";
   }
 
-  loadHCaptchaScript(siteKey) {
-    let hCaptchaScript = document.createElement("script");
-    hCaptchaScript.src = HCAPTCHA_SCRIPT_URL;
-    hCaptchaScript.async = true;
-    hCaptchaScript.defer = true;
-    hCaptchaScript.onload = () => {
-      this.hCaptcha = window.hcaptcha;
-      this.renderHCaptcha(siteKey);
-    };
-    document.head.appendChild(hCaptchaScript);
+  async loadHCaptchaScript(siteKey) {
+    await loadScript(HCAPTCHA_SCRIPT_URL);
+    this.hCaptcha = window.hcaptcha;
+    this.renderHCaptcha(siteKey);
   }
 
   renderHCaptcha(siteKey) {
@@ -56,9 +51,6 @@ export default class HCaptcha extends Component {
       callback: (response) => {
         this.hCaptchaService.token = response;
         this.hCaptchaService.invalid = !response;
-
-        if (response) {
-        }
       },
       "expired-callback": () => {
         this.hCaptchaService.invalid = true;

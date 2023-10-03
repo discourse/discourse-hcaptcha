@@ -9,6 +9,8 @@
 
 enabled_site_setting :discourse_hCaptcha_enabled
 
+extend_content_security_policy(script_src: %w[https://hcaptcha.com])
+
 module ::DiscourseHCaptcha
   PLUGIN_NAME = "discourse-hCaptcha"
 end
@@ -16,15 +18,6 @@ end
 require_relative "lib/discourse_h_captcha/engine"
 
 after_initialize do
-  require_dependency File.expand_path(
-                       "../app/controllers/discourse_h_captcha/h_captcha_controller.rb",
-                       __FILE__,
-                     )
-  require_dependency File.expand_path(
-                       "../lib/discourse_h_captcha/create_users_controller_patch.rb",
-                       __FILE__,
-                     )
-
   reloadable_patch do
     UsersController.class_eval { include DiscourseHCaptcha::CreateUsersControllerPatch }
   end
