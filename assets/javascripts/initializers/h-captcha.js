@@ -1,6 +1,6 @@
-import { withPluginApi } from "discourse/lib/plugin-api";
 import { Promise } from "rsvp";
 import { ajax } from "discourse/lib/ajax";
+import { withPluginApi } from "discourse/lib/plugin-api";
 const PLUGIN_ID = "discourse-hCaptcha";
 
 function initializeHCaptcha(api, container) {

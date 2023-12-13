@@ -1,7 +1,7 @@
-import Service from "@ember/service";
-import { disableImplicitInjections } from "discourse/lib/implicit-injections";
 import { tracked } from "@glimmer/tracking";
 import EmberObject from "@ember/object";
+import Service from "@ember/service";
+import { disableImplicitInjections } from "discourse/lib/implicit-injections";
 import I18n from "I18n";
 
 @disableImplicitInjections
