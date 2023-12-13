@@ -61,6 +61,7 @@ export default class HCaptcha extends Component {
   }
 
   willDestroy() {
+    super.willDestroy(...arguments);
     if (this.isHCaptchaLoaded()) {
       this.hCaptcha.reset(this.widgetId);
     }
