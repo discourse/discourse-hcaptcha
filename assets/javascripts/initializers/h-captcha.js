@@ -1,11 +1,12 @@
 import { Promise } from "rsvp";
 import { ajax } from "discourse/lib/ajax";
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { getOwnerWithFallback } from "discourse-common/lib/get-owner";
+
 const PLUGIN_ID = "discourse-hCaptcha";
 
 function initializeHCaptcha(api, container) {
   const siteSettings = container.lookup("site-settings:main");
-  const hCaptchaService = container.lookup("service:h-captcha-service"); // Lookup the service
 
   if (!siteSettings.discourse_hCaptcha_enabled) {
     return;
@@ -15,10 +16,15 @@ function initializeHCaptcha(api, container) {
     pluginId: PLUGIN_ID,
 
     createAccount() {
+      const hCaptchaService = getOwnerWithFallback(this).lookup(
+        "service:h-captcha-service"
+      );
       hCaptchaService.submitted = true;
+
       if (hCaptchaService.invalid) {
         return Promise.reject();
       }
+
       const data = {
         token: hCaptchaService.token,
       };
