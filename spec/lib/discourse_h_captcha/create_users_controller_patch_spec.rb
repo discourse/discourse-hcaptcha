@@ -60,6 +60,15 @@ RSpec.describe "Users", type: :request do
       end
     end
 
+    context "when h_captcha is disabled" do
+      before { SiteSetting.discourse_hCaptcha_enabled = false }
+
+      it "succeeds in registration" do
+        post "/u.json", params: user_params
+        expect(JSON.parse(response.body)["success"]).to be(true)
+      end
+    end
+
     private
 
     def honeypot_magic(params)
