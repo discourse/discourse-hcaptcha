@@ -2,6 +2,8 @@
 
 module ::DiscourseHCaptcha
   class HCaptchaController < ::ApplicationController
+    requires_plugin DiscourseHCaptcha::PLUGIN_NAME
+
     before_action :ensure_config
     TOKEN_TTL = 2.minutes
     protect_from_forgery except: [:create]

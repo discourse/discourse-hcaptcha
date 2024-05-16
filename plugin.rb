@@ -18,7 +18,5 @@ end
 require_relative "lib/discourse_h_captcha/engine"
 
 after_initialize do
-  reloadable_patch do
-    UsersController.class_eval { include DiscourseHCaptcha::CreateUsersControllerPatch }
-  end
+  reloadable_patch { UsersController.include(DiscourseHCaptcha::CreateUsersControllerPatch) }
 end
