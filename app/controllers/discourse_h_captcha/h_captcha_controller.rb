@@ -20,7 +20,7 @@ module ::DiscourseHCaptcha
 
     def ensure_config
       raise "not enabled" unless SiteSetting.discourse_hCaptcha_enabled
-      raise "token is missing" unless params[:token].present?
+      raise "token is missing" if params[:token].blank?
     end
 
     def store_token_in_redis(temp_id)
