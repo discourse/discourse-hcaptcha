@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module ::DiscourseHCaptcha
+module ::DiscourseHcaptcha
   class HCaptchaController < ::ApplicationController
-    requires_plugin DiscourseHCaptcha::PLUGIN_NAME
+    requires_plugin DiscourseHcaptcha::PLUGIN_NAME
 
     before_action :ensure_config
     TOKEN_TTL = 2.minutes

@@ -1,6 +1,6 @@
 en:
   site_settings:
-    discourse_hCaptcha_enabled: "Enable the hCaptcha Plugin"
-    hCaptcha_site_key: "hCaptcha Site Key"
-    hCaptcha_secret_key: "hCaptcha Secret Key"
+    discourse_hcaptcha_enabled: "Enable the hCaptcha Plugin"
+    hcaptcha_site_key: "hCaptcha Site Key"
+    hcaptcha_secret_key: "hCaptcha Secret Key"
   h_captcha_verification_failed: "hCaptcha verification failed"
