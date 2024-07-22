@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ::DiscourseHcaptcha
-  class HCaptchaController < ::ApplicationController
+  class HcaptchaController < ::ApplicationController
     requires_plugin DiscourseHcaptcha::PLUGIN_NAME
 
     before_action :ensure_config
@@ -19,7 +19,7 @@ module ::DiscourseHcaptcha
     private
 
     def ensure_config
-      raise "not enabled" unless SiteSetting.discourse_hCaptcha_enabled
+      raise "not enabled" unless SiteSetting.discourse_hcaptcha_enabled
       raise "token is missing" if params[:token].blank?
     end
 

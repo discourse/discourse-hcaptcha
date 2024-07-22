@@ -16,7 +16,7 @@ RSpec.describe "Users", type: :request do
     end
 
     before do
-      SiteSetting.discourse_hCaptcha_enabled = true
+      SiteSetting.discourse_hcaptcha_enabled = true
       SiteSetting.same_site_cookies = "Lax"
       SiteSetting.hCaptcha_secret_key = "secret-key"
 
@@ -61,7 +61,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context "when h_captcha is disabled" do
-      before { SiteSetting.discourse_hCaptcha_enabled = false }
+      before { SiteSetting.discourse_hcaptcha_enabled = false }
 
       it "succeeds in registration" do
         post "/u.json", params: user_params

@@ -8,7 +8,7 @@ module DiscourseHcaptcha
     included { before_action :check_h_captcha, only: [:create] }
 
     def check_h_captcha
-      return unless SiteSetting.discourse_hCaptcha_enabled
+      return unless SiteSetting.discourse_hcaptcha_enabled
 
       h_captcha_token = fetch_h_captcha_token
       raise Discourse::InvalidAccess.new if h_captcha_token.blank?
