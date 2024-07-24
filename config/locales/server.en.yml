@@ -1,6 +1,21 @@
 en:
+  dashboard:
+    problem:
+      hcaptcha_check: "this is not the right string"
+
+  admin: 
+    site_settings:
+      categories:
+        discourse_hcaptcha: "hCaptcha Plugin"
   site_settings:
     discourse_hcaptcha_enabled: "Enable the hCaptcha Plugin"
     hcaptcha_site_key: "hCaptcha Site Key"
     hcaptcha_secret_key: "hCaptcha Secret Key"
+    errors:
+      hcaptcha_configuration_issues: "There is a problem with your asdads hCaptcha configuration"
+      discourse_hcaptcha_enabled: "Your hCaptcha plugin is not enabled"
+      hcaptcha_site_key: "Your hCaptcha plugin site key is hasn't been set"
+      hcaptcha_secret_key: "Your hCaptcha plugin secret key hasn't been set"
+
+
   h_captcha_verification_failed: "hCaptcha verification failed"

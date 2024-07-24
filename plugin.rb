@@ -20,4 +20,7 @@ require_relative "lib/discourse_hcaptcha/engine"
 
 after_initialize do
   reloadable_patch { UsersController.include(DiscourseHcaptcha::CreateUsersControllerPatch) }
+
+  require_relative "app/services/problem_check/hcaptcha_check.rb"
+  register_problem_check ProblemCheck::HcaptchaCheck
 end
