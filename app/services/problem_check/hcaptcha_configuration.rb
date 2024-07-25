@@ -12,6 +12,6 @@ class ProblemCheck::HcaptchaConfiguration < ProblemCheck
   private
 
   def hcaptcha_credentias_present?
-    SiteSetting.hcaptcha_site_key && SiteSetting.hcaptcha_secret_key
+    SiteSetting.hcaptcha_site_key.present? && SiteSetting.hcaptcha_secret_key.present?
   end
 end

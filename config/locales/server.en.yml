@@ -1,12 +1,13 @@
 en:
   dashboard:
     problem:
-      hcaptcha_check: "There is a problem with your hCaptcha `site_key` or `secret_key` configuration"
+      hcaptcha_configuration: "There is a problem with your hCaptcha `site_key` or `secret_key` configuration"
 
   admin: 
     site_settings:
       categories:
         discourse_hcaptcha: "hCaptcha Plugin"
+        
   site_settings:
     discourse_hcaptcha_enabled: "Enable the hCaptcha Plugin"
     hcaptcha_site_key: "hCaptcha Site Key"
