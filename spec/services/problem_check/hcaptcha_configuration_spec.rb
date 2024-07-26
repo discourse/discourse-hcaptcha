@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe ProblemCheck::HcaptchaConfiguration do
   subject(:check) { described_class.new }
 
