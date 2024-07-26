@@ -44,7 +44,8 @@ export default class HCaptcha extends Component {
   }
 
   renderHCaptcha(siteKey) {
-    if (!this.isHCaptchaLoaded() || !this.siteKey) {
+    debugger;
+    if (!this.isHCaptchaLoaded() || !this.args.siteKey) {
      this.hCaptchaConfigError = I18n.t("discourse_hCaptcha.contact_system_administrator");
      return
     }
