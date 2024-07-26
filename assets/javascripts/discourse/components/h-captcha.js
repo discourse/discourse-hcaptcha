@@ -12,7 +12,7 @@ export default class HCaptcha extends Component {
 
   @tracked widgetId;
   @tracked invalid = true;
-  @tracked hCaptchaConfigError = '';
+  @tracked hCaptchaConfigError = "";
   hCaptcha;
 
   constructor() {
@@ -44,10 +44,11 @@ export default class HCaptcha extends Component {
   }
 
   renderHCaptcha(siteKey) {
-    debugger;
     if (!this.isHCaptchaLoaded() || !this.args.siteKey) {
-     this.hCaptchaConfigError = I18n.t("discourse_hCaptcha.contact_system_administrator");
-     return
+      this.hCaptchaConfigError = I18n.t(
+        "discourse_hCaptcha.contact_system_administrator"
+      );
+      return;
     }
 
     this.widgetId = this.hCaptcha.render("h-captcha-field", {
