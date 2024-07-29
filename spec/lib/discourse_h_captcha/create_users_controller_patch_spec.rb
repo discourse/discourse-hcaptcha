@@ -18,11 +18,11 @@ RSpec.describe "Users", type: :request do
     before do
       SiteSetting.discourse_hcaptcha_enabled = true
       SiteSetting.same_site_cookies = "Lax"
-      SiteSetting.hCaptcha_secret_key = "secret-key"
+      SiteSetting.hcaptcha_secret_key = "secret-key"
 
       stub_request(:post, "https://hcaptcha.com/siteverify").with(
         body: {
-          secret: SiteSetting.hCaptcha_secret_key,
+          secret: SiteSetting.hcaptcha_secret_key,
           response: "token-from-hCaptcha",
         },
       ).to_return(status: 200, body: '{"success":true}', headers: {})
@@ -32,7 +32,7 @@ RSpec.describe "Users", type: :request do
       before do
         stub_request(:post, "https://hcaptcha.com/siteverify").with(
           body: {
-            secret: SiteSetting.hCaptcha_secret_key,
+            secret: SiteSetting.hcaptcha_secret_key,
             response: "token-from-hCaptcha",
           },
         ).to_return(status: 200, body: '{"success":false}', headers: {})
