@@ -1,22 +1,26 @@
+# coding: utf-8
 # frozen_string_literal: true
 
-# name: discourse-hCaptcha
+# name: discourse-hcaptcha
 # about: hCaptcha support for Discourse
 # version: 0.0.1
 # authors: Discourse
 # url: https://github.com/discourse/discourse-hCaptcha
 # required_version: 2.7.0
 
-enabled_site_setting :discourse_hCaptcha_enabled
+enabled_site_setting :discourse_hcaptcha_enabled
 
 extend_content_security_policy(script_src: %w[https://hcaptcha.com])
 
-module ::DiscourseHCaptcha
-  PLUGIN_NAME = "discourse-hCaptcha"
+module ::DiscourseHcaptcha
+  PLUGIN_NAME = "discourse-hcaptcha"
 end
 
-require_relative "lib/discourse_h_captcha/engine"
+require_relative "lib/discourse_hcaptcha/engine"
 
 after_initialize do
-  reloadable_patch { UsersController.include(DiscourseHCaptcha::CreateUsersControllerPatch) }
+  reloadable_patch { UsersController.include(DiscourseHcaptcha::CreateUsersControllerPatch) }
+
+  require_relative "app/services/problem_check/hcaptcha_configuration.rb"
+  register_problem_check ProblemCheck::HcaptchaConfiguration
 end

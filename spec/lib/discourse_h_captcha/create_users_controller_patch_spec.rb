@@ -16,13 +16,13 @@ RSpec.describe "Users", type: :request do
     end
 
     before do
-      SiteSetting.discourse_hCaptcha_enabled = true
+      SiteSetting.discourse_hcaptcha_enabled = true
       SiteSetting.same_site_cookies = "Lax"
-      SiteSetting.hCaptcha_secret_key = "secret-key"
+      SiteSetting.hcaptcha_secret_key = "secret-key"
 
       stub_request(:post, "https://hcaptcha.com/siteverify").with(
         body: {
-          secret: SiteSetting.hCaptcha_secret_key,
+          secret: SiteSetting.hcaptcha_secret_key,
           response: "token-from-hCaptcha",
         },
       ).to_return(status: 200, body: '{"success":true}', headers: {})
@@ -32,7 +32,7 @@ RSpec.describe "Users", type: :request do
       before do
         stub_request(:post, "https://hcaptcha.com/siteverify").with(
           body: {
-            secret: SiteSetting.hCaptcha_secret_key,
+            secret: SiteSetting.hcaptcha_secret_key,
             response: "token-from-hCaptcha",
           },
         ).to_return(status: 200, body: '{"success":false}', headers: {})
@@ -61,7 +61,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context "when h_captcha is disabled" do
-      before { SiteSetting.discourse_hCaptcha_enabled = false }
+      before { SiteSetting.discourse_hcaptcha_enabled = false }
 
       it "succeeds in registration" do
         post "/u.json", params: user_params

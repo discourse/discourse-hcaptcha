@@ -3,6 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import loadScript from "discourse/lib/load-script";
+import I18n from "I18n";
 
 const HCAPTCHA_SCRIPT_URL = "https://hcaptcha.com/1/api.js?render=explicit";
 
@@ -11,6 +12,7 @@ export default class HCaptcha extends Component {
 
   @tracked widgetId;
   @tracked invalid = true;
+  @tracked hCaptchaConfigError = "";
   hCaptcha;
 
   constructor() {
@@ -42,8 +44,11 @@ export default class HCaptcha extends Component {
   }
 
   renderHCaptcha(siteKey) {
-    if (!this.isHCaptchaLoaded()) {
-      throw new Error("hCaptcha is not defined");
+    if (!this.isHCaptchaLoaded() || !this.args.siteKey) {
+      this.hCaptchaConfigError = I18n.t(
+        "discourse_hCaptcha.contact_system_administrator"
+      );
+      return;
     }
 
     this.widgetId = this.hCaptcha.render("h-captcha-field", {

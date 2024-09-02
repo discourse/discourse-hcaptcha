@@ -1,9 +1,10 @@
-plugins:
-  discourse_hCaptcha_enabled:
+discourse_hcaptcha:
+  discourse_hcaptcha_enabled:
     default: false
     client: true
-  hCaptcha_site_key:
+  hcaptcha_site_key:
     default: ''
     client: true
-  hCaptcha_secret_key:
+  hcaptcha_secret_key:
     default: ''
+    client: false

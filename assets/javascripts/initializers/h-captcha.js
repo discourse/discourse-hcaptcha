@@ -8,7 +8,7 @@ const PLUGIN_ID = "discourse-hCaptcha";
 function initializeHCaptcha(api, container) {
   const siteSettings = container.lookup("service:site-settings");
 
-  if (!siteSettings.discourse_hCaptcha_enabled) {
+  if (!siteSettings.discourse_hcaptcha_enabled) {
     return;
   }
 
