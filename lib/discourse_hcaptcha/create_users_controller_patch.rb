@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseHCaptcha
+module DiscourseHcaptcha
   module CreateUsersControllerPatch
     H_CAPTCHA_VERIFICATION_URL = "https://hcaptcha.com/siteverify".freeze
 
@@ -8,7 +8,7 @@ module DiscourseHCaptcha
     included { before_action :check_h_captcha, only: [:create] }
 
     def check_h_captcha
-      return unless SiteSetting.discourse_hCaptcha_enabled
+      return unless SiteSetting.discourse_hcaptcha_enabled
 
       h_captcha_token = fetch_h_captcha_token
       raise Discourse::InvalidAccess.new if h_captcha_token.blank?
@@ -31,7 +31,7 @@ module DiscourseHCaptcha
 
       request = FinalDestination::HTTP::Post.new(uri.request_uri)
       request.set_form_data(
-        { "secret" => SiteSetting.hCaptcha_secret_key, "response" => h_captcha_token },
+        { "secret" => SiteSetting.hcaptcha_secret_key, "response" => h_captcha_token },
       )
 
       http.request(request)
