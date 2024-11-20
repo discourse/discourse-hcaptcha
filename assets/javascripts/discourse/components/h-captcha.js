@@ -20,6 +20,13 @@ export default class HCaptcha extends Component {
     this.initializeHCaptcha(this.args.siteKey);
   }
 
+  willDestroy() {
+    super.willDestroy(...arguments);
+    if (this.isHCaptchaLoaded()) {
+      this.hCaptcha.reset(this.widgetId);
+    }
+  }
+
   initializeHCaptcha(siteKey) {
     if (this.isHCaptchaLoaded()) {
       next(() => {
@@ -63,12 +70,5 @@ export default class HCaptcha extends Component {
     });
 
     this.hCaptchaService.registerWidget(this.hCaptcha, this.widgetId);
-  }
-
-  willDestroy() {
-    super.willDestroy(...arguments);
-    if (this.isHCaptchaLoaded()) {
-      this.hCaptcha.reset(this.widgetId);
-    }
   }
 }
