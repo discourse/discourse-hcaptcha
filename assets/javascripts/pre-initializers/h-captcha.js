@@ -49,7 +49,8 @@ function initializeHCaptcha(api, container) {
 }
 
 export default {
-  name: PLUGIN_ID,
+  name: "hcaptcha-initializer",
+  before: "inject-discourse-objects",
 
   initialize(container) {
     withPluginApi("1.9.0", (api) => initializeHCaptcha(api, container));
