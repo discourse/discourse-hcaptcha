@@ -5,3 +5,13 @@
 # https://translate.discourse.org/
 
 ru:
+  js:
+    discourse_hCaptcha:
+      missing_token: "Пройдите тест hCaptcha."
+      placeholder: заполнитель
+      contact_system_administrator: "Возникла проблема с hCaptcha. Если проблема не исчезнет, обратитесь к системному администратору."
+  admin_js:
+    admin:
+      site_settings:
+        categories:
+          discourse_hcaptcha: "Discourse hCaptcha"

@@ -5,3 +5,15 @@
 # https://translate.discourse.org/
 
 de:
+  dashboard:
+    problem:
+      hcaptcha_configuration: "Es gibt ein Problem mit deiner hCaptcha-Konfiguration für `site_key` oder `secret_key`"
+  admin:
+    site_settings:
+      categories:
+        discourse_hcaptcha: "hCaptcha-Plug-in"
+  site_settings:
+    discourse_hcaptcha_enabled: "hCaptcha-Plug-in aktivieren"
+    hcaptcha_site_key: "hCaptcha-Website-Schlüssel"
+    hcaptcha_secret_key: "hCaptcha-Geheimschlüssel"
+  h_captcha_verification_failed: "hCaptcha-Verifizierung fehlgeschlagen"
