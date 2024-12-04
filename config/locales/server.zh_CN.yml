@@ -5,3 +5,15 @@
 # https://translate.discourse.org/
 
 zh_CN:
+  dashboard:
+    problem:
+      hcaptcha_configuration: "您的 hCaptcha `site_key` 或 `secret_key` 配置存在问题"
+  admin:
+    site_settings:
+      categories:
+        discourse_hcaptcha: "hCaptcha 插件"
+  site_settings:
+    discourse_hcaptcha_enabled: "启用 hCaptcha 插件"
+    hcaptcha_site_key: "hCaptcha 网站密钥"
+    hcaptcha_secret_key: "hCaptcha 密钥"
+  h_captcha_verification_failed: "hCaptcha 验证失败"

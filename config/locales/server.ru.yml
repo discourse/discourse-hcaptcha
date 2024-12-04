@@ -5,3 +5,15 @@
 # https://translate.discourse.org/
 
 ru:
+  dashboard:
+    problem:
+      hcaptcha_configuration: "Возникла проблема с конфигурацией ключей `site_key` или `secret_key для hCaptcha"
+  admin:
+    site_settings:
+      categories:
+        discourse_hcaptcha: "Плагин hCaptcha"
+  site_settings:
+    discourse_hcaptcha_enabled: "Включить плагин hCaptcha"
+    hcaptcha_site_key: "Ключ сайта (Site Key) для hCaptcha"
+    hcaptcha_secret_key: "Секретный ключ (Secret Key) для hCaptcha"
+  h_captcha_verification_failed: "Ошибка проверки hCaptcha"

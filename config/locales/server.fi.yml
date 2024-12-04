@@ -5,3 +5,15 @@
 # https://translate.discourse.org/
 
 fi:
+  dashboard:
+    problem:
+      hcaptcha_configuration: "hCaptchan \"site_key\"- tai \"secret_key\"-määrityksessä on ongelma"
+  admin:
+    site_settings:
+      categories:
+        discourse_hcaptcha: "hCaptcha-lisäosa"
+  site_settings:
+    discourse_hcaptcha_enabled: "Ota hCaptcha-lisäosa käyttöön"
+    hcaptcha_site_key: "hCaptcha-sivustoavain"
+    hcaptcha_secret_key: "hCaptcha-sala-avain"
+  h_captcha_verification_failed: "hCaptcha-vahvistus epäonnistui"

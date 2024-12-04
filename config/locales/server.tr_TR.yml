@@ -5,3 +5,15 @@
 # https://translate.discourse.org/
 
 tr_TR:
+  dashboard:
+    problem:
+      hcaptcha_configuration: "hCaptcha `site_key` veya `secret_key` yapılandırmanızda bir sorun var"
+  admin:
+    site_settings:
+      categories:
+        discourse_hcaptcha: "hCaptcha Eklentisi"
+  site_settings:
+    discourse_hcaptcha_enabled: "hCaptcha Eklentisini etkinleştirin"
+    hcaptcha_site_key: "hCaptcha Site Anahtarı"
+    hcaptcha_secret_key: "hCaptcha Gizli Anahtarı"
+  h_captcha_verification_failed: "hCaptcha doğrulaması başarısız oldu"

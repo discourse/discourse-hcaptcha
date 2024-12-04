@@ -5,3 +5,13 @@
 # https://translate.discourse.org/
 
 fi:
+  js:
+    discourse_hCaptcha:
+      missing_token: "Suorita hCaptcha-haaste."
+      placeholder: paikkamerkki
+      contact_system_administrator: "hCaptchassa on ollut ongelma. Jos ongelma jatkuu, ota yhteyttä järjestelmänvalvojaan."
+  admin_js:
+    admin:
+      site_settings:
+        categories:
+          discourse_hcaptcha: "Discourse hCaptcha"

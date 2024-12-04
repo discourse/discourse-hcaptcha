@@ -5,3 +5,15 @@
 # https://translate.discourse.org/
 
 nl:
+  dashboard:
+    problem:
+      hcaptcha_configuration: "Er is een probleem met de configuratie voor 'site_key' of 'secret_key' van je hCaptcha"
+  admin:
+    site_settings:
+      categories:
+        discourse_hcaptcha: "hCaptcha-plug-in"
+  site_settings:
+    discourse_hcaptcha_enabled: "Schakel de hCaptcha-plug-in in"
+    hcaptcha_site_key: "Sitesleutel hCaptcha"
+    hcaptcha_secret_key: "Geheime sleutel hCaptcha"
+  h_captcha_verification_failed: "hCaptcha-verificatie mislukt"
