@@ -7,6 +7,7 @@
 # authors: Discourse
 # url: https://github.com/discourse/discourse-hCaptcha
 # required_version: 2.7.0
+# meta_topic_id: 291383
 
 enabled_site_setting :discourse_hcaptcha_enabled
 
