@@ -12,8 +12,4 @@ pt_BR:
     site_settings:
       categories:
         discourse_hcaptcha: "Plugin hCaptcha"
-  site_settings:
-    discourse_hcaptcha_enabled: "Ativar o plugin hCaptcha"
-    hcaptcha_site_key: "Chave de site hCaptcha"
-    hcaptcha_secret_key: "Chave secreta hCaptcha"
   h_captcha_verification_failed: "Falha na verificação hCaptcha"
