@@ -12,8 +12,4 @@ ar:
     site_settings:
       categories:
         discourse_hcaptcha: "المكوِّن الإضافي hCaptcha"
-  site_settings:
-    discourse_hcaptcha_enabled: "تفعيل المكوِّن الإضافي hCaptcha"
-    hcaptcha_site_key: "مفتاح موقع hCaptcha"
-    hcaptcha_secret_key: "المفتاح السري لـ hCaptcha"
   h_captcha_verification_failed: "فشل اجتياز تحقق hCaptcha"

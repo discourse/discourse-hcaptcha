@@ -12,8 +12,4 @@ ja:
     site_settings:
       categories:
         discourse_hcaptcha: "hCaptcha プラグイン"
-  site_settings:
-    discourse_hcaptcha_enabled: "hCaptcha プラグインを有効にする"
-    hcaptcha_site_key: "hCaptcha サイトキー"
-    hcaptcha_secret_key: "hCaptcha シークレットキー"
   h_captcha_verification_failed: "hCaptcha 認証に失敗しました"

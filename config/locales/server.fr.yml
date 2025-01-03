@@ -12,8 +12,4 @@ fr:
     site_settings:
       categories:
         discourse_hcaptcha: "Extension hCaptcha"
-  site_settings:
-    discourse_hcaptcha_enabled: "Activer l'extension hCaptcha"
-    hcaptcha_site_key: "Clé de site hCaptcha"
-    hcaptcha_secret_key: "Clé secrète hCaptcha"
   h_captcha_verification_failed: "La vérification hCaptcha a échoué"
