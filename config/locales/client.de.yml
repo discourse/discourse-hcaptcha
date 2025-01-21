@@ -7,7 +7,7 @@
 de:
   js:
     discourse_hCaptcha:
-      missing_token: "Bitte schließen Sie die hCaptcha-Aufgabe ab."
+      missing_token: "Bitte schließe die hCaptcha-Aufgabe ab."
       placeholder: Platzhalter
       contact_system_administrator: "Es ist ein Problem mit hCaptcha aufgetreten. Falls dieses Problem weiterhin besteht, kontaktiere bitte einen Systemadministrator"
   admin_js:
