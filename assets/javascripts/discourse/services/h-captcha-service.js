@@ -2,7 +2,7 @@ import { tracked } from "@glimmer/tracking";
 import EmberObject from "@ember/object";
 import Service from "@ember/service";
 import { disableImplicitInjections } from "discourse/lib/implicit-injections";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 @disableImplicitInjections
 export default class hCaptchaService extends Service {
@@ -19,7 +19,7 @@ export default class hCaptchaService extends Service {
   get inputValidation() {
     return EmberObject.create({
       failed: this.invalid,
-      reason: I18n.t("discourse_hCaptcha.missing_token"),
+      reason: i18n("discourse_hCaptcha.missing_token"),
     });
   }
 
