@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { next } from "@ember/runloop";
 import { service } from "@ember/service";
+import InputTip from "discourse/components/input-tip";
 import loadScript from "discourse/lib/load-script";
 import { i18n } from "discourse-i18n";
 
@@ -71,4 +72,18 @@ export default class HCaptcha extends Component {
 
     this.hCaptchaService.registerWidget(this.hCaptcha, this.widgetId);
   }
+
+  <template>
+    <div id="h-captcha-field" class="h-captcha" data-sitekey={{@sitekey}}></div>
+
+    {{#if this.hCaptchaConfigError}}
+      <div class="alert alert-error">
+        {{this.hCaptchaConfigError}}
+      </div>
+    {{/if}}
+
+    {{#if this.hCaptchaService.submitFailed}}
+      <InputTip @validation={{this.hCaptchaService.inputValidation}} />
+    {{/if}}
+  </template>
 }
