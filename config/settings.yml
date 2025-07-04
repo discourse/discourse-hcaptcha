@@ -1,10 +1,23 @@
 discourse_hcaptcha:
-  discourse_hcaptcha_enabled:
+
+  discourse_captcha_enabled:
     default: false
+    client: true
+  discourse_hcaptcha_enabled:
+    default: true
     client: true
   hcaptcha_site_key:
     default: ''
     client: true
   hcaptcha_secret_key:
     default: ''
+    client: false
+  discourse_recaptcha_enabled:
+    default: true
+    client: true
+  recaptcha_site_key:
+    default: '6LfRr20rAAAAAG4ZyAi2GB9PZW_Qe1JDCs8YdZ5F'
+    client: true
+  recaptcha_secret_key:
+    default: '6LfRr20rAAAAAKG40SVQAzPOJ5AiS1Z7U6dMnR0h'
     client: false
