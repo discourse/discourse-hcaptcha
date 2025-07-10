@@ -11,6 +11,7 @@ import ReCaptcha from "../../components/re-captcha";
 )
 export default class HcaptchaFieldsConnector extends Component {
   @service siteSettings;
+
   <template>
     <div class="input-group">
       {{#if this.siteSettings.discourse_hcaptcha_enabled}}

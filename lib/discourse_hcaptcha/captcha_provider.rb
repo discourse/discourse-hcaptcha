@@ -4,11 +4,11 @@ module DiscourseHcaptcha
       raise NotImplementedError
     end
 
-    def fetch_captcha_token
+    def captcha_verification_url
       raise NotImplementedError
     end
 
-    def captcha_verification_url
+    def send_captcha_verification(captcha_token)
       raise NotImplementedError
     end
 
