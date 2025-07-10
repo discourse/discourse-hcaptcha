@@ -2,6 +2,7 @@ en:
   dashboard:
     problem:
       hcaptcha_configuration: "There is a problem with your hCaptcha `site_key` or `secret_key` configuration"
+      recaptcha_configuration: "There is a problem with your ReCaptcha `site_key` or `secret_key` configuration"
 
   admin: 
     site_settings:

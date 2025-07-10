@@ -5,7 +5,7 @@ class ProblemCheck::RecaptchaConfiguration < ProblemCheck
 
   def call
     if SiteSetting.discourse_captcha_enabled && SiteSetting.discourse_recaptcha_enabled &&
-         !recaptcha_credentias_present?
+         !recaptcha_credentials_present?
       return problem
     end
 
@@ -14,7 +14,7 @@ class ProblemCheck::RecaptchaConfiguration < ProblemCheck
 
   private
 
-  def recaptcha_credentias_present?
+  def recaptcha_credentials_present?
     SiteSetting.recaptcha_site_key.present? && SiteSetting.recaptcha_secret_key.present?
   end
 end

@@ -16,8 +16,8 @@ discourse_hcaptcha:
     default: true
     client: true
   recaptcha_site_key:
-    default: '6LfRr20rAAAAAG4ZyAi2GB9PZW_Qe1JDCs8YdZ5F'
+    default: ''
     client: true
   recaptcha_secret_key:
-    default: '6LfRr20rAAAAAKG40SVQAzPOJ5AiS1Z7U6dMnR0h'
+    default: ''
     client: false

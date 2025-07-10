@@ -12,7 +12,8 @@ module DiscourseHcaptcha
 
       captcha_token = captcha_provider.fetch_captcha_token(cookies)
       raise Discourse::InvalidAccess.new if captcha_token.blank?
-      response = send_captcha_verification(captcha_token, captcha_provider.captcha_verification_url)
+
+      response = captcha_provider.send_captcha_verification(captcha_token)
 
       validate_captcha_response(response)
     rescue => e
@@ -28,20 +29,6 @@ module DiscourseHcaptcha
       elsif SiteSetting.discourse_recaptcha_enabled
         ::DiscourseHcaptcha::RecaptchaProvider.new
       end
-    end
-
-    def send_captcha_verification(captcha_token, captcha_verification_url)
-      uri = URI.parse(captcha_verification_url)
-
-      http = FinalDestination::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-
-      request = FinalDestination::HTTP::Post.new(uri.request_uri)
-      request.set_form_data(
-        { "secret" => SiteSetting.recaptcha_secret_key, "response" => captcha_token },
-      )
-
-      http.request(request)
     end
 
     def validate_captcha_response(response)

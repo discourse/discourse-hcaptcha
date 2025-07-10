@@ -19,7 +19,6 @@ end
 
 require_relative "lib/discourse_hcaptcha/engine"
 require_relative "lib/discourse_hcaptcha/captcha_provider"
-# require_relative "lib/discourse_hcaptcha/create_users_controller_patch"
 
 after_initialize do
   reloadable_patch { UsersController.include(DiscourseHcaptcha::CreateUsersControllerPatch) }

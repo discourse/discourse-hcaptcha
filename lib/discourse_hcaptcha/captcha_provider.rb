@@ -25,6 +25,18 @@ module DiscourseHcaptcha
 
       captcha_token
     end
+
+    def send_verification(captcha_token, captcha_verification_url, secret_key)
+      uri = URI.parse(captcha_verification_url)
+
+      http = FinalDestination::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = FinalDestination::HTTP::Post.new(uri.request_uri)
+      request.set_form_data({ "secret" => secret_key, "response" => captcha_token })
+
+      http.request(request)
+    end
   end
 
   class HcaptchaProvider < CaptchaProvider
@@ -35,6 +47,9 @@ module DiscourseHcaptcha
 
     def captcha_verification_url
       CAPTCHA_VERIFICATION_URL
+    end
+    def send_captcha_verification(captcha_token)
+      send_verification(captcha_token, CAPTCHA_VERIFICATION_URL, SiteSetting.hcaptcha_secret_key)
     end
   end
 
@@ -47,6 +62,10 @@ module DiscourseHcaptcha
 
     def captcha_verification_url
       CAPTCHA_VERIFICATION_URL
+    end
+
+    def send_captcha_verification(captcha_token)
+      send_verification(captcha_token, CAPTCHA_VERIFICATION_URL, SiteSetting.recaptcha_secret_key)
     end
   end
 end
