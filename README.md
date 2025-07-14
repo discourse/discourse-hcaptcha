@@ -1,5 +1,8 @@
 # Discourse hCaptcha Plugin
 
+> [!IMPORTANT]
+> This plugin has now been bundled into Discourse core. See: https://meta.discourse.org/t/bundling-more-popular-plugins-with-discourse-core/373574
+
 ## Overview
 
 This plugin is designed to integrate HCaptcha into the sign-up form of Discourse forums. This plugin aims to enhance security and bot protection by leveraging the privacy-centric features of HCaptcha. The setup process is straightforward and consists of a few easy steps.
